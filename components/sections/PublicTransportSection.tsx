@@ -3,6 +3,7 @@
 import { useRef, useLayoutEffect } from "react";
 import Image from "next/image";
 import { SectionLabel } from "../presentation/SectionLabel";
+import { KeyTakeaways } from "../presentation/KeyTakeaways";
 import {
   HelpCircle,
   HandHelping,
@@ -17,6 +18,24 @@ import {
 } from "lucide-react";
 import { gsap } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+
+const transportKeyPoints = [
+  {
+    title: "Cut Carbon & Emissions",
+    description:
+      "Private automobiles drive global warming and smog; shared transit dramatically cuts CO₂.",
+  },
+  {
+    title: "Ride Transit & Share",
+    description:
+      "Buses and trains move dozens of passengers together, using far less energy per person.",
+  },
+  {
+    title: "Ease Traffic & Noise",
+    description:
+      "Promoting public transport reduces rush hour traffic jams and creates peaceful, clean cities.",
+  },
+];
 
 const pillars = [
   {
@@ -145,10 +164,17 @@ export function PublicTransportSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1D372D] tracking-tight leading-tight mb-3">
             Public vs. Private Transportation
           </h2>
-          <p className="text-base sm:text-lg text-[#313D35] max-w-2xl">
+          <p className="text-base sm:text-lg text-[#313D35] max-w-2xl mb-6">
             Public transportation is better than private transportation for our
             environment, our climate, and our daily communities.
           </p>
+
+          {/* Speaker Key Takeaways */}
+          <KeyTakeaways
+            speaker="Speaker 4"
+            title="Clean Transit Key Points"
+            points={transportKeyPoints}
+          />
         </div>
 
         {/* Top Row: Visual + Pillar 1 (What is it?) & Pillar 3 (Why important?) */}

@@ -3,9 +3,28 @@
 import { useRef, useLayoutEffect } from "react";
 import Image from "next/image";
 import { SectionLabel } from "../presentation/SectionLabel";
+import { KeyTakeaways } from "../presentation/KeyTakeaways";
 import { ArrowDown, Sparkles } from "lucide-react";
 import { gsap } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+
+const introKeyPoints = [
+  {
+    title: "Small Actions Matter",
+    description:
+      "Everyday personal habits add up to massive environmental protection over time.",
+  },
+  {
+    title: "Action Starts at Home",
+    description:
+      "Simple adjustments in our rooms, commutes, and meals protect global natural systems.",
+  },
+  {
+    title: "Our Shared Future",
+    description:
+      "Consistent collective action ensures clean air, water, and climate for the next generation.",
+  },
+];
 
 export function IntroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -74,10 +93,19 @@ export function IntroSection() {
         {/* Supporting text */}
         <p
           data-animate="intro-title"
-          className="text-lg sm:text-xl md:text-2xl text-[#313D35] max-w-2xl mx-auto font-normal leading-relaxed mb-10"
+          className="text-lg sm:text-xl md:text-2xl text-[#313D35] max-w-2xl mx-auto font-normal leading-relaxed mb-8"
         >
           Small actions in our daily lives can help protect the environment.
         </p>
+
+        {/* Speaker Key Takeaways */}
+        <div className="text-left max-w-4xl mx-auto w-full">
+          <KeyTakeaways
+            speaker="Speaker 1"
+            title="Introduction Key Points"
+            points={introKeyPoints}
+          />
+        </div>
 
         {/* Hero Visual Card */}
         <div
@@ -98,17 +126,17 @@ export function IntroSection() {
           <div className="p-4 sm:p-5 bg-white border-t border-[#DDEDE0] flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm text-[#526357]">
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-[#CFA457]" />
-              <span>A 10-minute collaborative English group presentation</span>
+              <span>A collaborative English group presentation</span>
             </div>
             <div className="font-mono text-[#36704E] font-medium">
-              4 Speakers • 6 Chapters
+              4 Speakers • 7 Chapters
             </div>
           </div>
         </div>
 
         {/* Scroll invitation */}
         <div className="mt-10 flex flex-col items-center gap-2 text-xs text-[#526357]">
-          <span>Scroll down to begin presentation</span>
+          <span>Scroll down to explore presentation topics</span>
           <ArrowDown className="w-4 h-4 text-[#36704E] animate-bounce" />
         </div>
       </div>

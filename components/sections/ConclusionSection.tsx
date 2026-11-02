@@ -3,9 +3,28 @@
 import { useRef, useLayoutEffect } from "react";
 import Image from "next/image";
 import { SectionLabel } from "../presentation/SectionLabel";
+import { KeyTakeaways } from "../presentation/KeyTakeaways";
 import { Sparkles, RotateCcw } from "lucide-react";
 import { gsap } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+
+const conclusionKeyPoints = [
+  {
+    title: "Consistency Over Perfection",
+    description:
+      "Nobody needs to live perfectly; small, consistent daily choices create massive lasting change.",
+  },
+  {
+    title: "Collective Power",
+    description:
+      "When communities, schools, and cities take small steps together, global ecosystems regenerate.",
+  },
+  {
+    title: "Start Today",
+    description:
+      "Choose one action right now: swap a plastic bag, switch off a light, or take public transit tomorrow.",
+  },
+];
 
 interface ConclusionSectionProps {
   onRestart: () => void;
@@ -79,6 +98,16 @@ export function ConclusionSection({ onRestart }: ConclusionSectionProps) {
           >
             No single person needs to be perfect. When millions of us take small steps every day, the positive impact on our planet is extraordinary.
           </p>
+
+          {/* Speaker Key Takeaways */}
+          <div className="text-left mt-8 max-w-4xl mx-auto">
+            <KeyTakeaways
+              speaker="Final Speaker"
+              title="Conclusion Key Points"
+              points={conclusionKeyPoints}
+              inverted
+            />
+          </div>
         </div>
 
         {/* Hero Closing Visual Card */}

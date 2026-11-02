@@ -3,6 +3,7 @@
 import { useRef, useLayoutEffect } from "react";
 import Image from "next/image";
 import { SectionLabel } from "../presentation/SectionLabel";
+import { KeyTakeaways } from "../presentation/KeyTakeaways";
 import {
   HelpCircle,
   HandHelping,
@@ -14,6 +15,24 @@ import {
 } from "lucide-react";
 import { gsap } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+
+const natureKeyPoints = [
+  {
+    title: "Trees Produce Life",
+    description:
+      "Trees absorb CO₂, release pure oxygen, and prevent soil erosion across watersheds.",
+  },
+  {
+    title: "Keep Habitats Clean",
+    description:
+      "Clearing trash from rivers and parks prevents wildlife ingestion and habitat collapse.",
+  },
+  {
+    title: "Preserve Biodiversity",
+    description:
+      "Protecting diverse animals maintains the delicate ecological balances all species rely upon.",
+  },
+];
 
 const actions = [
   {
@@ -92,10 +111,17 @@ export function ProtectNatureSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1D372D] tracking-tight leading-tight mb-3">
             Protect Nature and Wildlife
           </h2>
-          <p className="text-base sm:text-lg text-[#313D35] max-w-2xl">
+          <p className="text-base sm:text-lg text-[#313D35] max-w-2xl mb-6">
             Healthy forests, pure waters, and biodiversity sustain all life on
             Earth. Every ecosystem is interconnected.
           </p>
+
+          {/* Speaker Key Takeaways */}
+          <KeyTakeaways
+            speaker="Speaker 3"
+            title="Nature & Wildlife Key Points"
+            points={natureKeyPoints}
+          />
         </div>
 
         {/* Top Row: "What is it?" + Photo */}

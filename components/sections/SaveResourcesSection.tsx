@@ -2,6 +2,7 @@
 
 import { useRef, useLayoutEffect } from "react";
 import { SectionLabel } from "../presentation/SectionLabel";
+import { KeyTakeaways } from "../presentation/KeyTakeaways";
 import {
   HelpCircle,
   HandHelping,
@@ -17,6 +18,24 @@ import {
 } from "lucide-react";
 import { gsap } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+
+const resourceKeyPoints = [
+  {
+    title: "Conserve Clean Water",
+    description:
+      "Turning off running taps and taking shorter showers prevents regional water stress.",
+  },
+  {
+    title: "Unplug Vampire Power",
+    description:
+      "Unplugging idle electronics and switches stops unnecessary fossil power generation.",
+  },
+  {
+    title: "Lower Carbon Emissions",
+    description:
+      "Every kilowatt-hour saved at home lowers utility bills and cuts power-plant emissions.",
+  },
+];
 
 const waterActions = [
   {
@@ -92,10 +111,17 @@ export function SaveResourcesSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1D372D] tracking-tight leading-tight mb-3">
             Save Water and Energy
           </h2>
-          <p className="text-base sm:text-lg text-[#313D35] max-w-2xl">
+          <p className="text-base sm:text-lg text-[#313D35] max-w-2xl mb-6">
             Clean water and electricity are precious resources. Mindful daily
             usage protects our shared planet.
           </p>
+
+          {/* Speaker Key Takeaways */}
+          <KeyTakeaways
+            speaker="Speaker 2"
+            title="Resources Conservation Key Points"
+            points={resourceKeyPoints}
+          />
         </div>
 
         {/* Pillar 1: What is it? */}

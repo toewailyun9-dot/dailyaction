@@ -3,6 +3,7 @@
 import { useRef, useLayoutEffect } from "react";
 import Image from "next/image";
 import { SectionLabel } from "../presentation/SectionLabel";
+import { KeyTakeaways } from "../presentation/KeyTakeaways";
 import {
   HelpCircle,
   HandHelping,
@@ -14,6 +15,24 @@ import {
 } from "lucide-react";
 import { gsap } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+
+const wasteKeyPoints = [
+  {
+    title: "Cut Single-Use Plastic",
+    description:
+      "Plastic persists for centuries in soils and oceans; choose reusable bags and water bottles.",
+  },
+  {
+    title: "Sort & Recycle Right",
+    description:
+      "Separating clean paper, glass, and metal ensures valuable materials are remade into new items.",
+  },
+  {
+    title: "Protect Ocean Life",
+    description:
+      "Preventing plastic debris stops toxic marine ingestion and guards coastal habitats.",
+  },
+];
 
 const pillars = [
   {
@@ -122,10 +141,17 @@ export function ReduceWasteSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1D372D] tracking-tight leading-tight mb-3">
             Reduce Plastic and Waste
           </h2>
-          <p className="text-base sm:text-lg text-[#313D35] max-w-2xl">
+          <p className="text-base sm:text-lg text-[#313D35] max-w-2xl mb-6">
             Simple daily habits can dramatically reduce the amount of trash
             entering our oceans and landfills.
           </p>
+
+          {/* Speaker Key Takeaways */}
+          <KeyTakeaways
+            speaker="Speaker 1"
+            title="Waste Reduction Key Points"
+            points={wasteKeyPoints}
+          />
         </div>
 
         {/* Top Row: Image + "What is it?" */}

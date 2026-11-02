@@ -2,6 +2,7 @@
 
 import { useRef, useLayoutEffect } from "react";
 import { SectionLabel } from "../presentation/SectionLabel";
+import { KeyTakeaways } from "../presentation/KeyTakeaways";
 import {
   HelpCircle,
   HandHelping,
@@ -14,6 +15,24 @@ import {
 } from "lucide-react";
 import { gsap } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+
+const foodKeyPoints = [
+  {
+    title: "Cut Methane Gas",
+    description:
+      "Rotting food in landfills produces methane, a greenhouse gas far more potent than CO₂.",
+  },
+  {
+    title: "Plan, Save & Share",
+    description:
+      "Planning grocery lists, storing leftovers well, and sharing extra meals prevents needless waste.",
+  },
+  {
+    title: "Conserve Land & Water",
+    description:
+      "Saving food respects and preserves the immense agricultural water, energy, and land required to grow it.",
+  },
+];
 
 const foodStory = [
   {
@@ -86,10 +105,17 @@ export function FoodWasteSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1D372D] tracking-tight leading-tight mb-3">
             Reduce Food Waste
           </h2>
-          <p className="text-base sm:text-lg text-[#313D35] max-w-2xl">
+          <p className="text-base sm:text-lg text-[#313D35] max-w-2xl mb-6">
             A simple three-step approach keeps valuable food on our plates and
             out of trash bins.
           </p>
+
+          {/* Speaker Key Takeaways */}
+          <KeyTakeaways
+            speaker="Speaker 4"
+            title="Food Waste Reduction Key Points"
+            points={foodKeyPoints}
+          />
         </div>
 
         {/* Pillar 1: What is it? */}
