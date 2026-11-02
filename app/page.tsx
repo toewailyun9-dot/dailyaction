@@ -6,6 +6,7 @@ import { ReduceWasteSection } from "@/components/sections/ReduceWasteSection";
 import { SaveResourcesSection } from "@/components/sections/SaveResourcesSection";
 import { ProtectNatureSection } from "@/components/sections/ProtectNatureSection";
 import { FoodWasteSection } from "@/components/sections/FoodWasteSection";
+import { PublicTransportSection } from "@/components/sections/PublicTransportSection";
 import { ConclusionSection } from "@/components/sections/ConclusionSection";
 
 export default function Home() {
@@ -30,7 +31,10 @@ export default function Home() {
       {/* 5. Reduce Food Waste — Speaker 4 */}
       <FoodWasteSection />
 
-      {/* 6. Conclusion — Shared / Final Speaker */}
+      {/* 6. Clean Public Transportation — Speaker 4 */}
+      <PublicTransportSection />
+
+      {/* 7. Conclusion — Shared / Final Speaker */}
       <ConclusionSection onRestart={handleRestart} />
     </PresentationShell>
   );

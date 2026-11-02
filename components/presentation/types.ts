@@ -45,6 +45,13 @@ export const SECTIONS: SectionMeta[] = [
   {
     id: "section-6",
     number: 6,
+    title: "Public Transportation",
+    shortTitle: "Clean Transit",
+    speaker: "Speaker 4",
+  },
+  {
+    id: "section-7",
+    number: 7,
     title: "Conclusion",
     shortTitle: "Conclusion",
     speaker: "Final Speaker",

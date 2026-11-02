@@ -43,7 +43,7 @@ export function TopBar({ activeSectionIndex, onNavigate }: TopBarProps) {
         {/* Current Section Indicator Badge */}
         <div className="flex items-center gap-2 bg-[#F8FAF7] border border-[#DDEDE0] px-3 py-1.5 rounded-lg text-xs">
           <span className="font-mono font-semibold text-[#1D372D]">
-            0{activeSectionIndex} / 06
+            0{activeSectionIndex} / 0{SECTIONS.length}
           </span>
           <span className="hidden md:inline text-[#DDEDE0]">|</span>
           <span className="hidden md:inline text-[#313D35] font-medium max-w-[150px] truncate">

@@ -1,5 +1,7 @@
 "use client";
 
+import { SECTIONS } from "./types";
+
 interface SectionLabelProps {
   number: number;
   total?: number;
@@ -11,7 +13,7 @@ interface SectionLabelProps {
 
 export function SectionLabel({
   number,
-  total = 6,
+  total = SECTIONS.length,
   speaker,
   topic,
   className = "",

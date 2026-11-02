@@ -52,7 +52,7 @@ export function ConclusionSection({ onRestart }: ConclusionSectionProps) {
 
   return (
     <section
-      id="section-6"
+      id="section-7"
       ref={sectionRef}
       className="min-h-screen py-24 px-4 sm:px-6 md:px-10 flex flex-col justify-center bg-[#1D372D] text-[#F8FAF7] border-t border-[#36704E]"
     >
@@ -60,7 +60,7 @@ export function ConclusionSection({ onRestart }: ConclusionSectionProps) {
         {/* Header */}
         <div className="text-center mb-10">
           <SectionLabel
-            number={6}
+            number={7}
             speaker="Shared / Final Speaker"
             topic="Conclusion"
             inverted
@@ -111,7 +111,7 @@ export function ConclusionSection({ onRestart }: ConclusionSectionProps) {
         {/* Presentation Summary Recap */}
         <div
           data-animate="conclusion-content"
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 text-center"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 mb-12 text-center"
         >
           <div className="p-4 rounded-xl bg-white/5 border border-white/10">
             <div className="font-mono text-xs text-[#CFA457] mb-1">Speaker 1</div>
@@ -132,6 +132,11 @@ export function ConclusionSection({ onRestart }: ConclusionSectionProps) {
             <div className="font-mono text-xs text-[#CFA457] mb-1">Speaker 4</div>
             <div className="text-sm font-semibold text-white">Cut Food Waste</div>
             <div className="text-xs text-[#DDEDE0]/70 mt-1">Plan, Save & Share</div>
+          </div>
+          <div className="p-4 rounded-xl bg-white/5 border border-white/10 col-span-2 sm:col-span-1">
+            <div className="font-mono text-xs text-[#CFA457] mb-1">Speaker 4</div>
+            <div className="text-sm font-semibold text-white">Clean Transit</div>
+            <div className="text-xs text-[#DDEDE0]/70 mt-1">Buses & Trains</div>
           </div>
         </div>
 
