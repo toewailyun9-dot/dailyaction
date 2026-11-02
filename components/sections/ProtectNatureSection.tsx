@@ -3,31 +3,36 @@
 import { useRef, useLayoutEffect } from "react";
 import Image from "next/image";
 import { SectionLabel } from "../presentation/SectionLabel";
-import { Trees, Sparkles, HeartHandshake } from "lucide-react";
+import {
+  HelpCircle,
+  HandHelping,
+  AlertTriangle,
+  Leaf,
+  Trees,
+  Sparkles,
+  HeartHandshake,
+} from "lucide-react";
 import { gsap } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
-const natureActions = [
+const actions = [
   {
     icon: Trees,
     title: "Plant trees and take care of them",
     description:
       "Trees absorb carbon dioxide, cool our neighborhoods, and provide critical shelter for birds and insects.",
-    step: "01",
   },
   {
     icon: Sparkles,
     title: "Keep rivers, forests, and public places clean",
     description:
       "Pick up litter during walks and dispose of waste responsibly so nature stays safe and unpolluted.",
-    step: "02",
   },
   {
     icon: HeartHandshake,
     title: "Respect animals and do not destroy their homes",
     description:
       "Observe wildlife from a peaceful distance and protect natural habitats from harmful disruption.",
-    step: "03",
   },
 ];
 
@@ -53,11 +58,11 @@ export function ProtectNatureSection() {
         },
       });
 
-      gsap.from("[data-animate='nature-card']", {
+      gsap.from("[data-animate='nature-pillar']", {
         x: 20,
         opacity: 0,
         duration: 0.7,
-        stagger: 0.15,
+        stagger: 0.12,
         ease: "power2.out",
         scrollTrigger: {
           trigger: section,
@@ -88,50 +93,41 @@ export function ProtectNatureSection() {
             Protect Nature and Wildlife
           </h2>
           <p className="text-base sm:text-lg text-[#313D35] max-w-2xl">
-            Healthy forests, pure waters, and biodiversity sustain all life on Earth. Every ecosystem is interconnected.
+            Healthy forests, pure waters, and biodiversity sustain all life on
+            Earth. Every ecosystem is interconnected.
           </p>
         </div>
 
-        {/* Content Layout: 3 Actions + Nature Photography */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Action List */}
-          <div className="lg:col-span-7 flex flex-col gap-4 order-2 lg:order-1">
-            {natureActions.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={index}
-                  data-animate="nature-card"
-                  className="p-6 rounded-2xl bg-white border border-[#DDEDE0] hover:border-[#36704E] transition-colors shadow-xs"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#DDEDE0] flex items-center justify-center shrink-0 text-[#1D372D]">
-                      <Icon className="w-6 h-6 text-[#36704E]" />
-                    </div>
-
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between gap-2 mb-1">
-                        <h3 className="text-lg font-semibold text-[#1D372D]">
-                          {item.title}
-                        </h3>
-                        <span className="font-mono text-xs px-2.5 py-0.5 rounded bg-[#DDEDE0] text-[#1D372D] font-medium">
-                          Step {item.step}
-                        </span>
-                      </div>
-                      <p className="text-sm text-[#313D35] leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+        {/* Top Row: "What is it?" + Photo */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+          {/* Pillar 1: What is it? */}
+          <div
+            data-animate="nature-pillar"
+            className="lg:col-span-7 p-6 rounded-2xl bg-white border border-[#DDEDE0] shadow-xs flex flex-col justify-center"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-lg bg-[#DDEDE0] flex items-center justify-center">
+                <HelpCircle className="w-5 h-5 text-[#36704E]" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-[#1D372D]">
+                  What is it?
+                </h3>
+                <span className="font-mono text-xs text-[#526357]">
+                  Definition
+                </span>
+              </div>
+            </div>
+            <p className="text-base text-[#313D35] leading-relaxed">
+              Caring for natural ecosystems—forests, rivers, and wildlife—and the
+              living creatures that depend on them for survival.
+            </p>
           </div>
 
-          {/* Wildlife Photo */}
+          {/* Photo */}
           <div
             data-animate="nature-image"
-            className="lg:col-span-5 relative rounded-2xl overflow-hidden border border-[#DDEDE0] shadow-sm bg-white order-1 lg:order-2"
+            className="lg:col-span-5 relative rounded-2xl overflow-hidden border border-[#DDEDE0] shadow-sm bg-white"
           >
             <div className="relative aspect-[4/3] w-full">
               <Image
@@ -143,8 +139,108 @@ export function ProtectNatureSection() {
               />
             </div>
             <div className="p-4 bg-white border-t border-[#DDEDE0] text-xs text-[#526357]">
-              Living in harmony: Preserving natural habitats keeps wildlife healthy and thriving.
+              Living in harmony: Preserving natural habitats keeps wildlife
+              healthy and thriving.
             </div>
+          </div>
+        </div>
+
+        {/* Pillar 2: What can we do? — Action Cards */}
+        <div data-animate="nature-pillar" className="mb-6">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-lg bg-[#DDEDE0] flex items-center justify-center">
+              <HandHelping className="w-5 h-5 text-[#36704E]" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-[#1D372D]">
+                What can we do?
+              </h3>
+              <span className="font-mono text-xs text-[#526357]">
+                Daily Actions
+              </span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {actions.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={index}
+                  className="p-5 rounded-xl bg-white border border-[#DDEDE0] hover:border-[#36704E] transition-colors shadow-xs"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-[#DDEDE0] flex items-center justify-center shrink-0">
+                      <Icon className="w-5 h-5 text-[#36704E]" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <h4 className="text-base font-semibold text-[#1D372D]">
+                          {item.title}
+                        </h4>
+                        <span className="font-mono text-xs px-2 py-0.5 rounded bg-[#DDEDE0] text-[#1D372D] font-medium">
+                          0{index + 1}
+                        </span>
+                      </div>
+                      <p className="text-sm text-[#313D35] leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Bottom Row: Why Important + Benefits */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Pillar 3: Why is it important? */}
+          <div
+            data-animate="nature-pillar"
+            className="p-6 rounded-2xl bg-[#DDEDE0]/30 border border-[#DDEDE0] shadow-xs"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-lg bg-[#DDEDE0] flex items-center justify-center">
+                <AlertTriangle className="w-5 h-5 text-[#36704E]" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-[#1D372D]">
+                  Why is it important?
+                </h3>
+                <span className="font-mono text-xs text-[#526357]">
+                  Importance
+                </span>
+              </div>
+            </div>
+            <p className="text-base text-[#313D35] leading-relaxed">
+              Trees produce the oxygen we breathe, and biodiversity keeps our
+              global ecosystem balanced and resilient against climate change.
+            </p>
+          </div>
+
+          {/* Pillar 4: Environmental Benefits */}
+          <div
+            data-animate="nature-pillar"
+            className="p-6 rounded-2xl bg-[#1D372D] text-white shadow-xs"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-lg bg-[#36704E] flex items-center justify-center">
+                <Leaf className="w-5 h-5 text-[#DDEDE0]" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white">
+                  Environmental Benefits
+                </h3>
+                <span className="font-mono text-xs text-[#DDEDE0]/70">
+                  Benefits
+                </span>
+              </div>
+            </div>
+            <p className="text-base text-[#DDEDE0] leading-relaxed">
+              Absorbs harmful CO₂, prevents soil erosion, and provides safe
+              homes for wildlife across the planet.
+            </p>
           </div>
         </div>
       </div>

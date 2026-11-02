@@ -2,7 +2,16 @@
 
 import { useRef, useLayoutEffect } from "react";
 import { SectionLabel } from "../presentation/SectionLabel";
-import { ClipboardList, Refrigerator, Share2, ArrowRight } from "lucide-react";
+import {
+  HelpCircle,
+  HandHelping,
+  AlertTriangle,
+  Leaf,
+  ClipboardList,
+  Refrigerator,
+  Share2,
+  ArrowRight,
+} from "lucide-react";
 import { gsap } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
@@ -14,7 +23,6 @@ const foodStory = [
     description:
       "Make a grocery list and check your kitchen first so you only buy what you will actually cook and eat.",
     icon: ClipboardList,
-    tip: "Prevents impulsive overbuying",
   },
   {
     step: "02",
@@ -23,7 +31,6 @@ const foodStory = [
     description:
       "Keep ingredients in airtight containers, label leftovers, and eat meals before they spoil.",
     icon: Refrigerator,
-    tip: "Extends ingredient freshness",
   },
   {
     step: "03",
@@ -32,7 +39,6 @@ const foodStory = [
     description:
       "Offer surplus fresh groceries or prepared meals to neighbors, friends, or local food-sharing groups.",
     icon: Share2,
-    tip: "Strengthens community sharing",
   },
 ];
 
@@ -46,11 +52,11 @@ export function FoodWasteSection() {
     if (!section) return;
 
     const ctx = gsap.context(() => {
-      gsap.from("[data-animate='food-step']", {
+      gsap.from("[data-animate='food-pillar']", {
         y: 28,
         opacity: 0,
         duration: 0.8,
-        stagger: 0.2,
+        stagger: 0.15,
         ease: "power2.out",
         scrollTrigger: {
           trigger: section,
@@ -81,55 +87,145 @@ export function FoodWasteSection() {
             Reduce Food Waste
           </h2>
           <p className="text-base sm:text-lg text-[#313D35] max-w-2xl">
-            A simple three-step approach keeps valuable food on our plates and out of trash bins.
+            A simple three-step approach keeps valuable food on our plates and
+            out of trash bins.
           </p>
         </div>
 
-        {/* 3-Step Story Flow: Plan -> Save -> Share */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
-          {foodStory.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={idx}
-                data-animate="food-step"
-                className="relative rounded-2xl p-7 bg-white border border-[#DDEDE0] hover:border-[#36704E] transition-all shadow-xs flex flex-col justify-between"
-              >
-                <div>
-                  {/* Step Banner */}
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="font-mono text-2xl font-bold text-[#1D372D]">
-                      {item.step}
-                    </span>
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#DDEDE0] text-[#1D372D] uppercase tracking-wider">
-                      {item.keyword}
-                    </span>
+        {/* Pillar 1: What is it? */}
+        <div
+          data-animate="food-pillar"
+          className="p-6 rounded-2xl bg-white border border-[#DDEDE0] shadow-xs mb-6"
+        >
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-10 h-10 rounded-lg bg-[#DDEDE0] flex items-center justify-center">
+              <HelpCircle className="w-5 h-5 text-[#36704E]" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-[#1D372D]">
+                What is it?
+              </h3>
+              <span className="font-mono text-xs text-[#526357]">
+                Definition
+              </span>
+            </div>
+          </div>
+          <p className="text-base text-[#313D35] leading-relaxed">
+            Valuing the food we buy and preventing edible food from being thrown
+            away unnecessarily.
+          </p>
+        </div>
+
+        {/* Pillar 2: What can we do? — Plan → Save → Share */}
+        <div data-animate="food-pillar" className="mb-6">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-lg bg-[#DDEDE0] flex items-center justify-center">
+              <HandHelping className="w-5 h-5 text-[#36704E]" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-[#1D372D]">
+                What can we do?
+              </h3>
+              <span className="font-mono text-xs text-[#526357]">
+                3-Step Daily Actions
+              </span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {foodStory.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={idx}
+                  className="relative rounded-2xl p-7 bg-white border border-[#DDEDE0] hover:border-[#36704E] transition-all shadow-xs flex flex-col justify-between"
+                >
+                  <div>
+                    {/* Step Banner */}
+                    <div className="flex items-center justify-between mb-5">
+                      <span className="font-mono text-2xl font-bold text-[#1D372D]">
+                        {item.step}
+                      </span>
+                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#DDEDE0] text-[#1D372D] uppercase tracking-wider">
+                        {item.keyword}
+                      </span>
+                    </div>
+
+                    {/* Icon */}
+                    <div className="w-12 h-12 rounded-xl bg-[#DDEDE0] flex items-center justify-center text-[#1D372D] mb-4">
+                      <Icon className="w-6 h-6 text-[#36704E]" />
+                    </div>
+
+                    {/* Title & Description */}
+                    <h4 className="text-xl font-bold text-[#1D372D] mb-2 leading-snug">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-[#313D35] leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
 
-                  {/* Icon */}
-                  <div className="w-12 h-12 rounded-xl bg-[#DDEDE0] flex items-center justify-center text-[#1D372D] mb-5">
-                    <Icon className="w-6 h-6 text-[#36704E]" />
-                  </div>
-
-                  {/* Title & Description */}
-                  <h3 className="text-xl font-bold text-[#1D372D] mb-2 leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-[#313D35] leading-relaxed mb-6">
-                    {item.description}
-                  </p>
-                </div>
-
-                {/* Footer Pill */}
-                <div className="pt-4 border-t border-[#DDEDE0] text-xs text-[#526357] flex items-center justify-between">
-                  <span>{item.tip}</span>
+                  {/* Arrow connector */}
                   {idx < 2 && (
-                    <ArrowRight className="w-4 h-4 text-[#36704E] hidden md:block" />
+                    <div className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-[#36704E] items-center justify-center">
+                      <ArrowRight className="w-3.5 h-3.5 text-white" />
+                    </div>
                   )}
                 </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Bottom Row: Why Important + Benefits */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Pillar 3: Why is it important? */}
+          <div
+            data-animate="food-pillar"
+            className="p-6 rounded-2xl bg-[#DDEDE0]/30 border border-[#DDEDE0] shadow-xs"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-lg bg-[#DDEDE0] flex items-center justify-center">
+                <AlertTriangle className="w-5 h-5 text-[#36704E]" />
               </div>
-            );
-          })}
+              <div>
+                <h3 className="text-lg font-bold text-[#1D372D]">
+                  Why is it important?
+                </h3>
+                <span className="font-mono text-xs text-[#526357]">
+                  Importance
+                </span>
+              </div>
+            </div>
+            <p className="text-base text-[#313D35] leading-relaxed">
+              Food rotting in landfills releases methane, a potent greenhouse gas
+              that drives global warming and climate change.
+            </p>
+          </div>
+
+          {/* Pillar 4: Environmental Benefits */}
+          <div
+            data-animate="food-pillar"
+            className="p-6 rounded-2xl bg-[#1D372D] text-white shadow-xs"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-lg bg-[#36704E] flex items-center justify-center">
+                <Leaf className="w-5 h-5 text-[#DDEDE0]" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white">
+                  Environmental Benefits
+                </h3>
+                <span className="font-mono text-xs text-[#DDEDE0]/70">
+                  Benefits
+                </span>
+              </div>
+            </div>
+            <p className="text-base text-[#DDEDE0] leading-relaxed">
+              Lowers greenhouse gas emissions, conserves agriculture water and
+              land, and supports food security for communities.
+            </p>
+          </div>
         </div>
       </div>
     </section>

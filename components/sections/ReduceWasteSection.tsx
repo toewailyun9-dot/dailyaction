@@ -3,9 +3,47 @@
 import { useRef, useLayoutEffect } from "react";
 import Image from "next/image";
 import { SectionLabel } from "../presentation/SectionLabel";
-import { ShoppingBag, Droplet, Recycle } from "lucide-react";
+import {
+  HelpCircle,
+  HandHelping,
+  AlertTriangle,
+  Leaf,
+  ShoppingBag,
+  Droplet,
+  Recycle,
+} from "lucide-react";
 import { gsap } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+
+const pillars = [
+  {
+    icon: HelpCircle,
+    label: "What is it?",
+    tag: "Definition",
+    content:
+      "Cutting down on single-use plastic products and managing trash properly every day.",
+  },
+  {
+    icon: HandHelping,
+    label: "What can we do?",
+    tag: "Actions",
+    content: null, // Rendered as action cards instead
+  },
+  {
+    icon: AlertTriangle,
+    label: "Why is it important?",
+    tag: "Importance",
+    content:
+      "Plastic takes hundreds of years to break down and severely pollutes our oceans and soils.",
+  },
+  {
+    icon: Leaf,
+    label: "Environmental Benefits",
+    tag: "Benefits",
+    content:
+      "Protects marine life, prevents toxic pollution, and reduces landfill waste.",
+  },
+];
 
 const actions = [
   {
@@ -13,21 +51,18 @@ const actions = [
     title: "Bring reusable bags",
     description:
       "Keep a cloth bag with you for groceries and shopping to replace single-use plastic bags.",
-    tag: "Action 01",
   },
   {
     icon: Droplet,
     title: "Use a refillable water bottle",
     description:
       "Carry your own durable bottle to stay hydrated while cutting down on disposable plastic bottles.",
-    tag: "Action 02",
   },
   {
     icon: Recycle,
     title: "Sort waste and recycle when possible",
     description:
       "Separate paper, plastic, and metal so recyclable materials can be processed and reused.",
-    tag: "Action 03",
   },
 ];
 
@@ -53,11 +88,11 @@ export function ReduceWasteSection() {
         },
       });
 
-      gsap.from("[data-animate='waste-card']", {
+      gsap.from("[data-animate='waste-pillar']", {
         y: 20,
         opacity: 0,
         duration: 0.7,
-        stagger: 0.15,
+        stagger: 0.12,
         ease: "power2.out",
         scrollTrigger: {
           trigger: section,
@@ -88,13 +123,14 @@ export function ReduceWasteSection() {
             Reduce Plastic and Waste
           </h2>
           <p className="text-base sm:text-lg text-[#313D35] max-w-2xl">
-            Simple daily habits can dramatically reduce the amount of trash entering our oceans and landfills.
+            Simple daily habits can dramatically reduce the amount of trash
+            entering our oceans and landfills.
           </p>
         </div>
 
-        {/* Content Grid: Photo + 3 Action Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Photo Column */}
+        {/* Top Row: Image + "What is it?" */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+          {/* Photo */}
           <div
             data-animate="waste-image"
             className="lg:col-span-5 relative rounded-2xl overflow-hidden border border-[#DDEDE0] shadow-sm bg-white"
@@ -109,32 +145,96 @@ export function ReduceWasteSection() {
               />
             </div>
             <div className="p-4 bg-white border-t border-[#DDEDE0] text-xs text-[#526357]">
-              Everyday reusables: Simple swaps with long-lasting environmental benefits.
+              Everyday reusables: Simple swaps with long-lasting environmental
+              benefits.
             </div>
           </div>
 
-          {/* Action Cards Column */}
-          <div className="lg:col-span-7 flex flex-col gap-4">
+          {/* Right Column: Pillar 1 (What is it?) + Pillar 3 (Why important?) */}
+          <div className="lg:col-span-7 flex flex-col gap-6">
+            {/* Pillar 1: What is it? */}
+            <div
+              data-animate="waste-pillar"
+              className="p-6 rounded-2xl bg-white border border-[#DDEDE0] shadow-xs"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-lg bg-[#DDEDE0] flex items-center justify-center">
+                  <HelpCircle className="w-5 h-5 text-[#36704E]" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#1D372D]">
+                    {pillars[0].label}
+                  </h3>
+                  <span className="font-mono text-xs text-[#526357]">
+                    {pillars[0].tag}
+                  </span>
+                </div>
+              </div>
+              <p className="text-base text-[#313D35] leading-relaxed">
+                {pillars[0].content}
+              </p>
+            </div>
+
+            {/* Pillar 3: Why is it important? */}
+            <div
+              data-animate="waste-pillar"
+              className="p-6 rounded-2xl bg-[#DDEDE0]/30 border border-[#DDEDE0] shadow-xs"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-lg bg-[#DDEDE0] flex items-center justify-center">
+                  <AlertTriangle className="w-5 h-5 text-[#36704E]" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#1D372D]">
+                    {pillars[2].label}
+                  </h3>
+                  <span className="font-mono text-xs text-[#526357]">
+                    {pillars[2].tag}
+                  </span>
+                </div>
+              </div>
+              <p className="text-base text-[#313D35] leading-relaxed">
+                {pillars[2].content}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Pillar 2: What can we do? — Action Cards */}
+        <div data-animate="waste-pillar" className="mb-6">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-lg bg-[#DDEDE0] flex items-center justify-center">
+              <HandHelping className="w-5 h-5 text-[#36704E]" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-[#1D372D]">
+                What can we do?
+              </h3>
+              <span className="font-mono text-xs text-[#526357]">
+                Daily Actions
+              </span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {actions.map((item, index) => {
               const Icon = item.icon;
               return (
                 <div
                   key={index}
-                  data-animate="waste-card"
-                  className="p-5 sm:p-6 rounded-xl bg-white border border-[#DDEDE0] hover:border-[#36704E] transition-colors shadow-xs"
+                  className="p-5 rounded-xl bg-white border border-[#DDEDE0] hover:border-[#36704E] transition-colors shadow-xs"
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#DDEDE0] flex items-center justify-center shrink-0 text-[#1D372D]">
-                      <Icon className="w-6 h-6 text-[#36704E]" />
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-[#DDEDE0] flex items-center justify-center shrink-0">
+                      <Icon className="w-5 h-5 text-[#36704E]" />
                     </div>
-
                     <div className="flex-1">
                       <div className="flex items-center justify-between gap-2 mb-1">
-                        <h3 className="text-lg font-semibold text-[#1D372D]">
+                        <h4 className="text-base font-semibold text-[#1D372D]">
                           {item.title}
-                        </h3>
+                        </h4>
                         <span className="font-mono text-xs px-2 py-0.5 rounded bg-[#DDEDE0] text-[#1D372D] font-medium">
-                          {item.tag}
+                          0{index + 1}
                         </span>
                       </div>
                       <p className="text-sm text-[#313D35] leading-relaxed">
@@ -146,6 +246,29 @@ export function ReduceWasteSection() {
               );
             })}
           </div>
+        </div>
+
+        {/* Pillar 4: Environmental Benefits */}
+        <div
+          data-animate="waste-pillar"
+          className="p-6 rounded-2xl bg-[#1D372D] text-white shadow-xs"
+        >
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-10 h-10 rounded-lg bg-[#36704E] flex items-center justify-center">
+              <Leaf className="w-5 h-5 text-[#DDEDE0]" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white">
+                {pillars[3].label}
+              </h3>
+              <span className="font-mono text-xs text-[#DDEDE0]/70">
+                {pillars[3].tag}
+              </span>
+            </div>
+          </div>
+          <p className="text-base text-[#DDEDE0] leading-relaxed">
+            {pillars[3].content}
+          </p>
         </div>
       </div>
     </section>
